@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1">
+	<title>exam page</title>
+<style>
+	h3,h4,hr{
+	text-align: center;
+	color: antiquewhite;
+	text-shadow: 1px 1px 5px darkblue;
+}
+.login{
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-around;
+	margin: 0 4px;
+padding: auto 5px;
+}
+.sinup{
+	width: 100%;
+	height: 30px;
+	border: none;
+	border-radius:10px;
+background: lightskyblue;
+}
+.container{
+	display: flex;
+flex-direction: column ;
+justify-content: space-between;
+row-gap: 20px;
+}
+form{
+	display: flex;
+flex-flow: column nowrap;
+row-gap: 20px;
+justify-items: space-around;
+margin: 0 4px;
+padding: auto 5px;
+}
+.button{
+	width: 20%;
+	height:30px;
+	border: none;
+	border-radius:10px;
+	background: lightskyblue;
+}
+.submiter{
+	margin: 0 4px;
+padding: auto 5px;
+	display: flex;
+flex-flow: column nowrap;
+row-gap: 20px;
+justify-items: space-around;
+margin: auto 10px;
+padding: auto 5px;
+}
+input {
+	margin: 0 4px;
+padding: auto 5px;
+	height:30px;
+	border: 0px,2px, 0px, 0px;
+border-radius:5px;
+}
+.container-card{
+	margin: auto 10px;
+padding: auto 5px;
+	width 100vw;
+		display: flex;
+	flex-flow: column nowrap;
+	row-gap: 20px;
+	justify-items: space-around;
+	box-shadow: 2px 2px 10px black;
+	border: none;
+	border-radius: 8px;
+	}
+</style>
+</head>
+<body>
+	<h3>Well Come To Examination</h3>
+	<hr />
+	<div class="container-card">
+	<form class="form" action="">
+		<h4>Register here first...</h4>
+		<input class="ip1"class="txt" type="text" name="name" id="" value="" placeholder="full name" required/>
+		<input class="email"type="email" name="email" id="" value="" placeholder="your email" required/>
+		<input class="pass" type="password" name="password" id="" value="" placeholder="your password" required/>
+		<button class="sinup" type="submit">sign up</button>
+	</form>
+	
+	<div class="submiter">
+
+		<div class="login">
+			<p>have you account already?</p> 
+			<button class="button" type="submit">login</button>
+		</div>
+	</div>
+	</div>
+	
+	<footer class="">
+		<p>® All rights are reserved</p>
+	</footer>
+	<script  type="text/javascript" charset="utf-8">
+let form = document.querySelector('.form');
+let input = document.querySelector('.ip1');
+let sinup = document.querySelector('.sinup');
+let sign = sinup.textContent;
+let btn = document.querySelector('.button');
+let a = ''
+let b = ''
+let c = ''
+
+	form.addEventListener('submit',async(e)=>{
+		e.preventDefault();
+a = form.name.value;
+b = form.email.value;
+c = form.password.value;
+
+	const data = JSON.stringify({
+	"email": b,
+	"password": c
+	
+});
+const options = {
+	method: 'POST',
+	headers: {
+		'Content-Type': 'application/json'
+	},
+	body: data
+};
+function auth(){
+	alert('auhentication successfull!')
+}
+function failed() {
+	alert('auhentication failed!')
+}
+await fetch('http://localhost:4000/api/login/', options)
+  .then(response => 
+  	response.json())
+  .then(result => 
+   alert(result.details.massage))
+   .then((a) => 
+   console.log(a))
+  .catch(error => 
+  console.log('error', error))
+ .catch(() => 
+  alert('authentication failed!'));
+
+
+		form.reset();
+	})
+
+	</script>
+	<script src="jQuery.js">
+	</script>
+<script>
+	$('document').ready(() => {
+
+	$('.button').click(async () => {
+		$('.ip1').hide();
+		$('p').hide();
+		
+		$('.button').hide();
+		$('.sinup').html('<b>login</b>');
+		
+	});
+	});
+
+</script>
+</body>
+
+</html>
